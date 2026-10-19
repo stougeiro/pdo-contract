@@ -115,8 +115,8 @@ composer require stougeiro/pdo-contract
 
 Below is a list of known implementations maintained by the community.
 
-- `stougeiro/database`  
-  Repository: https://github.com/stougeiro/database
+- `stougeiro/pdo-database`  
+  Repository: https://github.com/stougeiro/pdo-database
 
 ---
 
