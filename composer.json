@@ -1,6 +1,6 @@
 {
     "name": "stougeiro/pdo-contract",
-    "description": "",
+    "description": "PDO-based database contract: interfaces and enums for a dialect-agnostic model, a single-method IR-driven driver and a normalized raw/result layer, covering SQLite, MySQL and PostgreSQL.",
     "type": "library",
     "minimum-stability": "stable",
     "prefer-stable": true,
@@ -12,6 +12,18 @@
         }
     ],
     "keywords": [
+        "pdo",
+        "database",
+        "contract",
+        "interface",
+        "query-tree",
+        "ir",
+        "sql",
+        "sqlite",
+        "mysql",
+        "postgresql",
+        "driver",
+        "model"
     ],
     "support": {
         "issues": "https://github.com/stougeiro/pdo-contract/issues",
