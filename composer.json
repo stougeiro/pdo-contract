@@ -43,22 +43,10 @@
     "require": {
         "php": ">=8.2"
     },
-    "autoload-dev": {
-        "psr-4": {
-            "Tests\\": "tests/"
-        }
-    },
     "require-dev": {
-        "phpstan/phpstan": "^2.2",
-        "pestphp/pest": "^3.8"
+        "phpstan/phpstan": "^2.2"
     },
     "scripts": {
-        "stan": "vendor/bin/phpstan",
-        "pest": "vendor/bin/pest"
-    },
-    "config": {
-        "allow-plugins": {
-            "pestphp/pest-plugin": true
-        }
+        "stan": "vendor/bin/phpstan"
     }
 }
