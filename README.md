@@ -17,8 +17,17 @@ engine-neutral result the model standardizes.
 The pipeline is four stages:
 
 ```
-Config        →  Connection  →  Driver                →  Model
-(dsn + keys)     (PDO + tx)     (IR → SQL → RAW)         (arrays → IR → Result)
+Config
+  │ dsn + keys
+  ▼
+Connection
+  │ PDO + transactions
+  ▼
+Driver
+  │ IR → SQL → RAW
+  ▼
+Model
+  │ arrays → IR → Result
 ```
 
 Responsibilities are strictly layered: the **Connection** owns the physical
