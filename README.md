@@ -2,7 +2,7 @@
 ![PHPStan-Level](https://img.shields.io/badge/PHPStan-Level%209-224488)
 ![License](https://img.shields.io/badge/License-MIT-777)
 
-# PDO Contract
+# Database Contract
 
 A PDO-based database contract: interfaces and enums only, with the model in front and a single-method, IR-driven PDO driver as the executor.
 
