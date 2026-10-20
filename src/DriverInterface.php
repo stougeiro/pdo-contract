@@ -8,29 +8,33 @@ use STDW\Contract\Pdo\Statement\StatementInterface;
 
 
 /**
- * The low-level normalizer: renders the executable IR through the dialect,
- * executes it over the connection and returns a RAW, engine-neutral result.
+ * The IR translator: renders the neutral, executable statement through the
+ * dialect and returns a RAW, engine-neutral result.
  *
- * One method only. The driver centralizes prepare and bind (ParamType ->
- * PDO::PARAM_*) and never interpolates a value into SQL. It also absorbs the
- * engine divergences that would otherwise leak upwards: identifier quoting,
- * operator rendering, LIMIT/OFFSET and the RETURNING-vs-last-insert-id split
- * for generated keys. The Model never branches on dialect — it builds a
- * StatementInterface and reads RawInterface back.
+ * One method only, and it is IR-only by design: it compiles a
+ * StatementInterface (SELECT/INSERT/UPDATE/DELETE plus the shared query
+ * tree) into SQL, delegating the actual execution to the Connection — which
+ * is the single place that talks to the native PDO handle. The translator
+ * never interpolates a value (the Connection binds each Param) and absorbs
+ * the engine divergences that would otherwise leak upwards: identifier
+ * quoting, operator rendering, LIMIT/OFFSET and the RETURNING-vs-last-id
+ * split for generated keys. The Model never branches on dialect — it builds
+ * a StatementInterface and reads RawInterface back.
  *
- * The connection (its handle and transactions) and the dialect are internal
- * collaborators, not part of this surface. The driver stays IR-only: raw
- * SQL and cross-model transactions are reached through the Connection
- * (transactions and its PDO handle), not here.
+ * Raw SQL is not translated, so it is not here: it lives on the Connection
+ * (fetch/fetchAll/execute), reached by callers who own the SQL. The
+ * connection (handle and transactions) and the dialect are internal
+ * collaborators, not part of this surface.
  */
 interface DriverInterface
 {
     /**
-     * Renders and executes the statement, returning the normalized result.
+     * Translates and executes the neutral statement, returning the
+     * normalized result.
      *
      * @param StatementInterface $statement
      * @return RawInterface
      * @throws DriverExceptionInterface
      */
-    public function execute(StatementInterface $statement): RawInterface;
+    public function translate(StatementInterface $statement): RawInterface;
 }

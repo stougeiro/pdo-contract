@@ -7,7 +7,8 @@ use Throwable;
 
 /**
  * Root marker of the package. Every thrown exception — connection setup,
- * driver execution, invalid query IR — is catchable through this type.
+ * driver execution, invalid query IR or malformed statement — is catchable
+ * through this type.
  */
 interface DatabaseExceptionInterface extends Throwable
 { }

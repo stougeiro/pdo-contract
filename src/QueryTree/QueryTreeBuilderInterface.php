@@ -39,7 +39,7 @@ use STDW\Contract\Pdo\QueryTree\Node\PaginationNodeInterface;
  * - values become typed Params and are never interpolated; the builder
  *   auto-wraps a raw value, or rejects one it cannot type;
  * - columns, tables, aliases and other identifiers are validated and
- *   handed to the dialect as-is — the driver quotes and escapes them;
+ *   handed to the dialect as-is — the dialect quotes and escapes them;
  * - "column OP" must parse to a known ConditionOperator; an empty filter
  *   yields no WHERE (null), never an empty group;
  * - operator arity is enforced (in/not_in need a non-empty list;

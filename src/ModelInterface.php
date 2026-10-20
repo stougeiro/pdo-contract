@@ -24,7 +24,7 @@ use STDW\Contract\Pdo\Result\ResultInterface;
  *
  * The model is a spearhead: it exposes neither the driver nor the
  * connection. Lower-level needs are reached outside it — the Connection
- * for cross-model transactions, the Driver for raw SQL — resolved by the
+ * for cross-model transactions and raw SQL — resolved by the
  * implementation's registry.
  *
  * @phpstan-import-type Filter from QueryTreeBuilderInterface
@@ -41,7 +41,12 @@ interface ModelInterface
     public function table(): string;
 
     /**
-     * Inserts one record.
+     * Inserts one record and returns it.
+     *
+     * The returned record reflects what the database stored — not just the
+     * input — so columns the database fills (defaults, timestamps, generated
+     * values) are included, whether the engine returns them natively
+     * (RETURNING) or they are fetched back afterwards.
      *
      * @param array<string, mixed> $data
      * @return ResultInterface

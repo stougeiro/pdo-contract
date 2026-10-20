@@ -6,7 +6,8 @@ namespace STDW\Contract\Pdo\Result;
 /**
  * Universal return of every Model operation.
  *
- * The driver returns raw PDO results; the Model standardizes them here.
+ * The driver returns a RawInterface; the Model standardizes it here into the
+ * developer-facing result.
  *
  * Semantics by operation:
  * - create/read: count() = 1 on success, 0 otherwise; data() = the record.

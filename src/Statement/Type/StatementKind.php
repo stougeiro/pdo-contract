@@ -6,7 +6,7 @@ namespace STDW\Contract\Pdo\Statement\Type;
 /**
  * The operation a StatementInterface carries.
  *
- * Neutral keys: the driver renders each kind to the engine's native SQL
+ * Neutral keys: the driver translates each kind to the engine's native SQL
  * (SELECT/INSERT/UPDATE/DELETE). Select reads; Insert/Update/Delete write
  * and therefore require data (and, for Update/Delete, a non-empty where).
  */

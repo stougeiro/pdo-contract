@@ -7,8 +7,8 @@ use PDO;
 
 /**
  * The PDO bind type of a value. Each case value IS the matching
- * PDO binding constant — there is no translation step: drivers bind with
- * $param->type()->value directly.
+ * PDO binding constant — there is no translation step: the Connection binds
+ * with $param->type()->value directly.
  *
  * Float has no PDO bind type (PDO has no PARAM_FLOAT); floats are bound as
  * String. Binary maps to LOB.

@@ -12,9 +12,10 @@ use STDW\Contract\Pdo\QueryTree\Node\PaginationNodeInterface;
  * The single, neutral query IR: projection, filter, order, pagination and
  * the aggregation clauses (groupBy, aggregates, having) in one structure.
  *
- * It rides inside StatementInterface, which the driver renders to SQL
- * through its dialect. The model lowers the array DSL into it through
- * QueryTreeBuilderInterface; drivers never see the arrays, only this IR.
+ * It rides inside StatementInterface, which the driver translates to SQL
+ * through its dialect for the Connection to run. The model lowers the array
+ * DSL into it through QueryTreeBuilderInterface; drivers never see the
+ * arrays, only this IR.
  *
  * Semantics:
  * - columns() empty and aggregates() empty is SELECT *;
