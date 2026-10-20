@@ -44,6 +44,21 @@ interface ConfigInterface
     public function options(): array;
 
     /**
+     * Whether the engine can hand the inserted record back through a native
+     * RETURNING clause on this connection. Defaults to true, so a modern
+     * engine uses RETURNING; declare false only when the running server is
+     * older than the clause's introduction (MariaDB < 10.5, SQLite < 3.35),
+     * which drops the connection to the last-insert-id fallback.
+     *
+     * This is the higher-priority switch and is ANDed with the dialect's own
+     * supportsReturning(): a native RETURNING is used only when both agree.
+     * When it is true the emulateReturning() policy below is never consulted.
+     *
+     * @return bool
+     */
+    public function supportsReturning(): bool;
+
+    /**
      * Whether the generated record should be returned on insert even when the
      * engine has no native RETURNING, by emulating it with a follow-up select.
      *

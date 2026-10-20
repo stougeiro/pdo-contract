@@ -99,8 +99,11 @@ to the Connection; and the **Model** is a spearhead that turns arrays into a
   quote delimiter (the single injection boundary). Malformed DSL/statements
   fail fast, before the engine.
 - **Per-dialect config** — `ConfigInterface` exposes the DSN, credentials and
-  the `emulateReturning()` policy (only consulted where `RETURNING` is
-  unavailable); each dialect value object validates its own required keys.
+  the generated-key policy. `supportsReturning()` (default true) is the
+  higher-priority switch, ANDed with the dialect's own `supportsReturning()`:
+  declare false for a server older than the clause. `emulateReturning()` is
+  only consulted where `RETURNING` is unavailable. Each dialect value object
+  validates its own required keys.
 - **Plain table names** — no resource/metadata abstraction; operations take
   `string $table`.
 - **Native vocabulary** — `ParamType` values *are* the `PDO::PARAM_*`
