@@ -23,7 +23,9 @@ use STDW\Contract\Pdo\Statement\Type\StatementKind;
  *   data() and returning() are empty;
  * - Insert: query() is null (no WHERE); data() is a non-empty column map;
  *   returning() may list columns to hand back, and the wildcard "*" means
- *   the whole record (e.g. so database-filled columns come back);
+ *   the whole record (e.g. so database-filled columns come back); key()
+ *   names the column that identifies the inserted row (the generated key),
+ *   used to read the record back when the engine has no native RETURNING;
  * - Update: query() carries a non-empty WHERE (order/pagination/groupBy/
  *   having/aggregates are not meaningful); data() is a non-empty column map;
  * - Delete: query() carries a non-empty WHERE; data() and returning() are
@@ -49,6 +51,15 @@ interface StatementInterface
      * @return string 
      */
     public function table(): string;
+
+    /**
+     * The column that identifies the inserted row (the generated key), for an
+     * insert. The driver uses it to read the stored record back when the
+     * engine lacks native RETURNING and emulation is on. Ignored otherwise.
+     * 
+     * @return string 
+     */
+    public function key(): string;
 
     /**
      * The row selection (WHERE/ORDER/pagination/aggregation), when any.
